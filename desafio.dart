@@ -150,6 +150,3 @@ int n_palavras_unicas(List<String> lista_palavras) {
   return contagem.values.where((count) => count == 1).length;
 }
 
-int n_palavras_diferentes(List<String> lista_palavras) {
-  return lista_palavras.toSet().length;
-}
