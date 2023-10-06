@@ -2,55 +2,58 @@ import 'dart:io';
 
 //https://rainy-sweater-4ce.notion.site/Desafio-dart-ad1c4165dfd540639d50d4eb5b293c87
 void main() {
-  var oUsuario = le_assinatura();
-  var textos = le_textos();
-  var textoInfectado = avalia_textos(textos, oUsuario);
-  print(
-      "O texto mais provável de ter sido infectado por COH-PIAH é o texto $textoInfectado");
+  var textos =
+      "Então resolveu ir brincar com a Máquina pra ser também imperador dos filhos da mandioca. Mas as três cunhas deram muitas risadas e falaram que isso de deuses era gorda mentira antiga, que não tinha deus não e que com a máquina ninguém não brinca porque ela mata. A máquina não era deus não, nem possuía os distintivos femininos de que o herói gostava tanto. Era feita pelos homens. Se mexia com eletricidade com fogo com água com vento com fumo, os homens aproveitando as forças da natureza. Porém jacaré acreditou? nem o herói! Se levantou na cama e com um gesto, esse sim! bem guaçu de desdém, tó! batendo o antebraço esquerdo dentro do outro dobrado, mexeu com energia a munheca direita pras três cunhas e partiu. Nesse instante, falam, ele inventou o gesto famanado de ofensa: a pacova.";
+  // var oUsuario = le_assinatura();
+  // var textos = le_textos();
+//   var textoInfectado = avalia_textos(textos, oUsuario);
+//   print(
+//       "O texto mais provável de ter sido infectado por COH-PIAH é o texto $textoInfectado");
+  print(calcula_assinatura(textos));
 }
 
 //Esse é o jeito de fazer input no dart
-List<double> le_assinatura() {
-  print("Bem-vindo ao detector automático de COH-PIAH.");
-  print("Informe a assinatura típica de um aluno infectado:");
-  print("Tamanho médio da palavra:");
-  double wal = double.parse(stdin.readLineSync()!);
-  print("Relação Type-Token:");
-  double ttr = double.parse(stdin.readLineSync()!);
-  print("Razão Hapax Legomana:");
-  double hlr = double.parse(stdin.readLineSync()!);
-  print("tamanho médio de sentença:");
-  double sal = double.parse(stdin.readLineSync()!);
-  print("complexidade média da sentença:");
-  double sac = double.parse(stdin.readLineSync()!);
-  print("tamanho médio de frase:");
-  double pal = double.parse(stdin.readLineSync()!);
+// List<double> le_assinatura() {
+//   print("Bem-vindo ao detector automático de COH-PIAH.");
+//   print("Informe a assinatura típica de um aluno infectado:");
+//   print("Tamanho médio da palavra:");
+//   double wal = double.parse(stdin.readLineSync()!);
+//   print("Relação Type-Token:");
+//   double ttr = double.parse(stdin.readLineSync()!);
+//   print("Razão Hapax Legomana:");
+//   double hlr = double.parse(stdin.readLineSync()!);
+//   print("tamanho médio de sentença:");
+//   double sal = double.parse(stdin.readLineSync()!);
+//   print("complexidade média da sentença:");
+//   double sac = double.parse(stdin.readLineSync()!);
+//   print("tamanho médio de frase:");
+//   double pal = double.parse(stdin.readLineSync()!);
 
-  return [wal, ttr, hlr, sal, sac, pal];
-}
+//   return [wal, ttr, hlr, sal, sac, pal];
+// }
 
 //Input padrão de texto para com a condicional
-List<String> le_textos() {
-  print("Informe os textos a serem comparados (Aperte Enter para encerrar):");
-  var textos = <String>[];
-  while (true) {
-    var texto = stdin.readLineSync()!;
-    if (texto.isEmpty) {
-      break;
-    }
-    textos.add(texto);
-  }
-  return textos;
-}
+// List<String> le_textos() {
+//   print("Informe os textos a serem comparados (Aperte Enter para encerrar):");
+//   var textos = <String>[];
+//   while (true) {
+//     var texto = stdin.readLineSync()!;
+//     if (texto.isEmpty) {
+//       break;
+//     }
+//     textos.add(texto);
+//   }
+//   return textos;
+// }
 
 //Isso é basicamente a transcrição do desafio.
-double compara_assinatura(List<double> as_a, List<double> as_b) {
-  double somaDiferenca = 0;
-  for (var i = 0; i < 6; i++) {
-    somaDiferenca += ((as_a[i] - as_b[i]).abs()) / 6;
-  }
-  return somaDiferenca / as_a.length;
-}
+// double compara_assinatura(List<double> as_a, List<double> as_b) {
+//   double somaDiferenca = 0;
+//   for (var i = 0; i < 6; i++) {
+//     somaDiferenca += ((as_a[i] - as_b[i]).abs()) / 6;
+//   }
+//   return somaDiferenca / as_a.length;
+// }
 
 //função própria armazenar as funções criadas
 List<double> calcula_assinatura(String texto) {
@@ -67,22 +70,22 @@ List<double> calcula_assinatura(String texto) {
   return [wal, ttr, hlr, sal, sac, pal];
 }
 
-int avalia_textos(List<String> textos, List<double> oUsuario) {
-  var similaridadeMinima = double.infinity;
-  var textoInfectado = 0;
+// int avalia_textos(List<String> textos, List<double> oUsuario) {
+//   var similaridadeMinima = double.infinity;
+//   var textoInfectado = 0;
 
-  for (var i = 0; i < textos.length; i++) {
-    var assinaturaTexto = calcula_assinatura(textos[i]);
-    var similaridade = compara_assinatura(oUsuario, assinaturaTexto);
+//   for (var i = 0; i < textos.length; i++) {
+//     var assinaturaTexto = calcula_assinatura(textos[i]);
+//     var similaridade = compara_assinatura(oUsuario, assinaturaTexto);
 
-    if (similaridade < similaridadeMinima) {
-      similaridadeMinima = similaridade;
-      textoInfectado = i + 1;
-    }
-  }
+//     if (similaridade < similaridadeMinima) {
+//       similaridadeMinima = similaridade;
+//       textoInfectado = i + 1;
+//     }
+//   }
 
-  return textoInfectado;
-}
+//   return textoInfectado;
+// }
 
 //Tamanho médio de palavra é a soma dos tamanhos das palavras dividida pelo número total de palavras.
 //Essa ideia do reduce foi fazer ele pegar valor por alor do mapa e ir somando.
